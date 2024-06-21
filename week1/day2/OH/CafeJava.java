@@ -52,5 +52,7 @@ public class CafeJava {
         else{
             System.out.println(generalGreeting + customer4 + pendingMessage);
         }
+        // Jimmy just realized he was charged for a coffee but had ordered a latte. Print the total message with the new calculated total (what he owes) to make up the difference.
+        System.out.println(generalGreeting + customer4 + " You owe $" +  (latte - dripCoffee));
     }
 }
