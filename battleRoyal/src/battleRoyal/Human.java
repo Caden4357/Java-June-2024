@@ -1,6 +1,6 @@
 package battleRoyal;
 
-public class Human {
+public class Human implements Actionable {
 	private double health = 100;
 	private double stamina = 100;
 	private int level;
@@ -20,11 +20,22 @@ public class Human {
 		this.name = name;
 	}
 
+	@Override
 	public void attack(Human target) {
 		this.setStamina(this.getStamina() - 10);
 		target.setHealth(target.getHealth() - 5);
 	}
 
+	@Override
+	public void defend() {
+		this.setStamina(this.getStamina() - 8);
+	}
+
+	@Override
+	public void move() {
+		this.setStamina(this.getStamina() - 3);
+	}
+	
 	public double getHealth() {
 		return health;
 	}
@@ -87,10 +98,6 @@ public class Human {
 
 	public void setAlive(boolean isAlive) {
 		this.isAlive = isAlive;
-	}
-	
-	
-	
-	
+	}	
 
 }
