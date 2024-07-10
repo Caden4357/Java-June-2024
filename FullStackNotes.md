@@ -14,6 +14,21 @@
     <groupId>org.glassfish.web</groupId>
     <artifactId>jakarta.servlet.jsp.jstl</artifactId>
 </dependency>
+<!-- MySQL -->
+<dependency>
+    <groupId>com.mysql</groupId>
+    <artifactId>mysql-connector-j</artifactId>
+    <scope>runtime</scope>
+</dependency>
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-data-jpa</artifactId>
+</dependency>
+<!-- Validations -->
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-validation</artifactId>
+</dependency>   
 <!-- BOOTSTRAP DEPENDENCIES -->
 <dependency>
     <groupId>org.webjars</groupId>
@@ -31,4 +46,23 @@
 # Application.properties
 ```
 spring.mvc.view.prefix=/WEB-INF/
+spring.datasource.url=jdbc:mysql://localhost:3306/<<YOUR_SCHEMA>>?createDatabaseIfNotExist=true
+spring.datasource.username=<<dbuser>>
+spring.datasource.password=<<dbpassword>>
+spring.jpa.hibernate.ddl-auto=update
+```
+
+
+# Notes About Models
+```
+Annotations 
+@Entity: represents an entity model for our application
+@Table: sets this as a table in the database
+@Id: sets this as the primary key
+@GeneratedValue: sets this as an auto-incrementing value
+@Size adds validation that the column must be in the specified range
+@Min adds validation that the column must be at least the specified value
+@NotNull adds validation that the column must not be null
+@PrePersist runs the method right before the object is created
+@PreUpdate runs a method when the object is modified
 ```
