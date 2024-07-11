@@ -50,6 +50,7 @@ spring.datasource.url=jdbc:mysql://localhost:3306/<<YOUR_SCHEMA>>?createDatabase
 spring.datasource.username=<<dbuser>>
 spring.datasource.password=<<dbpassword>>
 spring.jpa.hibernate.ddl-auto=update
+spring.mvc.hiddenmethod.filter.enabled=true
 ```
 
 
