@@ -39,6 +39,9 @@ public class RestaurantService {
         }
     }
     
+    public Restaurant update(Restaurant restaurant) {
+    	return rRepo.save(restaurant);
+    }
     
     public void deleteRestaurant(Long id) {
     	rRepo.deleteById(id);

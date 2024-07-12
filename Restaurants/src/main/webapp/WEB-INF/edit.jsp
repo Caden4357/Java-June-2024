@@ -12,36 +12,11 @@
 <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
 </head>
 <body>
-	<div class="container text-center">
-		<h1>Restaurants</h1>
-		<div class="d-flex justify-content-between mt-5">
-			<c:forEach var="restaurant" items="${restaurants}">
-				<div class="w-1/4 border border-2 border-success p-2">
-					<h2>
-					<a href="/restaurant/${restaurant.id}">
-						Name:
-						<c:out value="${restaurant.name}" />
-					</a>
-					</h2>
-					<h2>
-						Cuisine:
-						<c:out value="${restaurant.cuisine}" />
-					</h2>
-					<h2>
-						Rating:
-						<c:out value="${restaurant.rating}" />
-					</h2>
-					<h2>
-						Open?:
-						<c:out value="${restaurant.isOpen}" />
-					</h2>
-					<a href="/edit/restaurant/${restaurant.id}">Edit</a>
-				</div>
-			</c:forEach>
-		</div>
-		<h2>Add Your Favorite Restaurant</h2>
-		<form:form action="/create/restaurant" method="post"
-			modelAttribute="rest">
+	<div>
+		<h1>Edit</h1>
+		<form:form action="/update/restaurant/${restaurant.id}" method="post"
+			modelAttribute="restaurant">
+			<input type="hidden" name="_method" value="put"/>
 			<div>
 				<form:label path="name">Name:</form:label>
 				<form:input type="text" path="name" />

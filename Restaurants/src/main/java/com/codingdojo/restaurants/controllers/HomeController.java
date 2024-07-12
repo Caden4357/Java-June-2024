@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 
 import com.codingdojo.restaurants.models.Restaurant;
 import com.codingdojo.restaurants.services.RestaurantService;
@@ -32,7 +33,7 @@ public class HomeController {
     	model.addAttribute("restaurants", allRestaurants);
     	return "index.jsp";
     }
-    @PostMapping("/new/restaurant")
+    @PostMapping("/create/restaurant")
     public String newRestaurant(@Valid @ModelAttribute("rest") Restaurant rest, BindingResult result, Model model) {
     	if(result.hasErrors()) {
     		List<Restaurant> allRestaurants = restaurants.getAll();
@@ -48,6 +49,24 @@ public class HomeController {
     	Restaurant restaurant = restaurants.getOneRestaurant(id);
     	model.addAttribute("restaurant", restaurant);
     	return "oneRestaurant.jsp";
+    }
+    
+    @GetMapping("/edit/restaurant/{id}")
+    public String editForm(@PathVariable("id") Long id, Model model) {
+    	model.addAttribute("restaurant", restaurants.getOneRestaurant(id));
+    	return "edit.jsp";
+    }
+    
+    @PutMapping("/update/restaurant/{id}")
+    public String updateRestaurant(@Valid @ModelAttribute("restaurant") Restaurant restaurant, BindingResult result, Model model) {
+    	if(result.hasErrors()) {
+    		model.addAttribute("restaurant", restaurant);
+    		return "edit.jsp";
+    	}else {
+    		restaurants.update(restaurant);
+    		return "redirect:/";
+    	}
+    	
     }
     
     @DeleteMapping("/delete/restaurant/{id}")
