@@ -31,7 +31,7 @@ public class HomeController {
     public String index(Model model, @ModelAttribute("rest") Restaurant rest) {
     	List<Restaurant> allRestaurants = restaurants.getAll();
     	model.addAttribute("restaurants", allRestaurants);
-    	return "index.jsp";
+    	return "dashboard.jsp";
     }
     @PostMapping("/create/restaurant")
     public String newRestaurant(@Valid @ModelAttribute("rest") Restaurant rest, BindingResult result, Model model) {
