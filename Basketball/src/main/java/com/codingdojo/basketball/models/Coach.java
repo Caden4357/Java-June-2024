@@ -1,18 +1,17 @@
 package com.codingdojo.basketball.models;
 
 import java.util.Date;
-import java.util.List;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Table;
@@ -20,8 +19,8 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 @Entity
-@Table(name = "teams")
-public class Team {
+@Table(name = "coaches")
+public class Coach {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -32,11 +31,7 @@ public class Team {
     
     @NotNull
     @Size(min = 2, max = 45)
-    private String city;
-    
-    @NotNull
-    @Size(min = 2, max = 45)
-    private String state;
+    private String title;
     
     @Column(updatable=false)
     @DateTimeFormat(pattern="yyyy-MM-dd")
@@ -52,15 +47,11 @@ public class Team {
     protected void onUpdate(){
         this.updatedAt = new Date();
     }
-    
-    @OneToMany(mappedBy="team", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<Player> players;
-    
-    @OneToMany(mappedBy="team", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<Coach> coaches;
-    
-    
-	public Team() {
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="team_id")
+    private Team team;
+
+	public Coach() {
 	}
 	public Long getId() {
 		return id;
@@ -74,17 +65,11 @@ public class Team {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getCity() {
-		return city;
+	public String getTitle() {
+		return title;
 	}
-	public void setCity(String city) {
-		this.city = city;
-	}
-	public String getState() {
-		return state;
-	}
-	public void setState(String state) {
-		this.state = state;
+	public void setTitle(String title) {
+		this.title = title;
 	}
 	public Date getCreatedAt() {
 		return createdAt;
@@ -98,19 +83,12 @@ public class Team {
 	public void setUpdatedAt(Date updatedAt) {
 		this.updatedAt = updatedAt;
 	}
-	public List<Player> getPlayers() {
-		return players;
+	public Team getTeam() {
+		return team;
 	}
-	public void setPlayers(List<Player> players) {
-		this.players = players;
+	public void setTeam(Team team) {
+		this.team = team;
 	}
-	public List<Coach> getCoaches() {
-		return coaches;
-	}
-	public void setCoaches(List<Coach> coaches) {
-		this.coaches = coaches;
-	}
-	
-	
+    
     
 }

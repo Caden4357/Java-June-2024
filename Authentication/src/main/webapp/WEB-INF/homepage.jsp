@@ -13,34 +13,8 @@
 </head>
 <body>
 	<div class="container text-center">
-		<h2>
-			Name:
-			<c:out value="${team.name}" />
-		</h2>
-		<h2>
-			City:
-			<c:out value="${team.city}" />
-		</h2>
-		<h2>
-			State:
-			<c:out value="${team.state}" />
-		</h2>
-
-		<h3>Players:</h3>
-		<c:forEach var="player" items="${team.players}">
-			<p>
-				Name:
-				<c:out value="${player.name}" />
-			</p>
-		</c:forEach>
-
-		<h3>Coaches:</h3>
-		<c:forEach var="coach" items="${team.coaches}">
-			<p>
-				Name:
-				<c:out value="${coach.name}" />
-			</p>
-		</c:forEach>
+		<h1>Hello, <c:out value="${user.firstName }"/> <c:out value="${user.lastName }"/></h1>
+		<a href="/logout">Logout</a>
 	</div>
 </body>
 </html>

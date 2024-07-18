@@ -15,6 +15,7 @@
 	<div class="container text-center">
 		<h1>Basketball</h1>
 		<a href="/new/player">Add A Player</a>
+		<a href="/new/coach">Add A Coach</a>
 		<div class="d-flex justify-content-between mt-5">
 			<c:forEach var="team" items="${teams}">
 				<div class="w-1/4 border border-2 border-success p-2">
@@ -37,7 +38,7 @@
 		</div>
 		<h2>Add A Team</h2>
 		<form:form action="/create/team" method="post"
-			modelAttribute="team">
+			modelAttribute="teamForm">
 			<div>
 				<form:label path="name">Name:</form:label>
 				<form:input type="text" path="name" />

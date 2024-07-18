@@ -40,6 +40,12 @@
     <artifactId>bootstrap</artifactId>
     <version>5.2.3</version>
 </dependency>
+<!-- BCRYPT DEPENDENCY -->
+<dependency>
+    <groupId>org.mindrot</groupId>
+    <artifactId>jbcrypt</artifactId>
+    <version>0.4</version>
+</dependency>
 
 ```
 
