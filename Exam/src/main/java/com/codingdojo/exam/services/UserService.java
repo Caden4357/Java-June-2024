@@ -1,4 +1,4 @@
-package com.codingdojo.authentication.services;
+package com.codingdojo.exam.services;
 
 import java.util.Optional;
 
@@ -7,9 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
 
-import com.codingdojo.authentication.models.LoggedInUser;
-import com.codingdojo.authentication.models.User;
-import com.codingdojo.authentication.repositories.UserRepository;
+import com.codingdojo.exam.models.LoggedInUser;
+import com.codingdojo.exam.models.User;
+import com.codingdojo.exam.repositories.UserRepository;
+
+
 
 @Service
 public class UserService {

@@ -1,14 +1,20 @@
-package com.codingdojo.authentication.models;
+package com.codingdojo.exam.models;
 
+import java.time.LocalDate;
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Table;
@@ -25,17 +31,12 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@NotEmpty(message = "First Name is required!")
-	@Size(min = 3, max = 30, message = "First Name must be between 3 and 30 characters")
-	private String firstName;
+	@NotEmpty(message = "Userame is required!")
+	@Size(min = 3, max = 30, message = "Userame must be between 3 and 30 characters")
+	private String username;
 
-	@NotEmpty(message = "Last Name is required!")
-	@Size(min = 3, max = 30, message = "Last Name must be between 3 and 30 characters")
-	private String lastName;
-
-	@NotEmpty(message = "Favorite Language is required!")
-	@Size(min = 3, max = 30, message = "Favorite Language must be between 3 and 30 characters")
-	private String favLanguage;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private LocalDate birthday;
 
 	
 	@NotEmpty(message = "Email is required!")
@@ -44,7 +45,7 @@ public class User {
 
 	@NotEmpty(message = "Password is required!")
 	@Size(min = 8, max = 128, message = "Password must be between 8 and 128 characters")
-	@Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[#$@!%&*?])[A-Za-z\\d#$@!%&*?]{8,}$", message = "Password must containt one capital letter one lowercase one special character and one number")
+//	@Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[#$@!%&*?])[A-Za-z\\d#$@!%&*?]{8,}$", message = "Password must containt one capital letter one lowercase one special character and one number")
 	private String password;
 
 	@Transient
@@ -67,7 +68,10 @@ public class User {
 	protected void onUpdate() {
 		this.updatedAt = new Date();
 	}
-
+    @OneToMany(mappedBy="user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Game> games;
+    
+    
 	public User() {
 	}
 
@@ -79,20 +83,20 @@ public class User {
 		this.id = id;
 	}
 
-	public String getFirstName() {
-		return firstName;
+	public String getUsername() {
+		return username;
 	}
 
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
-	public String getLastName() {
-		return lastName;
+	public LocalDate getBirthday() {
+		return birthday;
 	}
 
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
+	public void setBirthday(LocalDate birthday) {
+		this.birthday = birthday;
 	}
 
 	public String getEmail() {
@@ -135,12 +139,14 @@ public class User {
 		this.updatedAt = updatedAt;
 	}
 
-	public String getFavLanguage() {
-		return favLanguage;
+	public List<Game> getGames() {
+		return games;
 	}
 
-	public void setFavLanguage(String favLanguage) {
-		this.favLanguage = favLanguage;
+	public void setGames(List<Game> games) {
+		this.games = games;
 	}
+
+	
 
 }

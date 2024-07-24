@@ -25,12 +25,18 @@ public class Coach {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
-    @NotNull
-    @Size(min = 2, max = 45)
+	/*
+	 * @NotNull
+	 * 
+	 * @Size(min = 2, max = 45)
+	 */
     private String name;
     
-    @NotNull
-    @Size(min = 2, max = 45)
+	/*
+	 * @NotNull
+	 * 
+	 * @Size(min = 2, max = 45)
+	 */
     private String title;
     
     @Column(updatable=false)

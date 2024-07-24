@@ -13,33 +13,26 @@
 </head>
 <body>
 	<div class="container text-center">
-		<h1>Add A Player</h1>
-		<form:form action="/create/player" method="post"
-			modelAttribute="player">
+		<h1>Add A Game</h1>
+		<a href="/homepage">Dashboard</a>
+		<form:form action="/create/game" method="post" modelAttribute="game">
+<%-- 			<input type="hidden" name="user" value="${userId}" /> --%>
 			<div>
 				<form:label path="name">Name:</form:label>
 				<form:input type="text" path="name" />
 				<form:errors class="text-danger" path="name" />
 			</div>
 			<div>
-				<form:label path="position">Position:</form:label>
-				<form:input type="text" path="position" />
-				<form:errors class="text-danger" path="position" />
+				<form:label path="description">Description:</form:label>
+				<form:input type="text" path="description" />
+				<form:errors class="text-danger" path="description" />
 			</div>
 			<div>
-				<form:label path="age">Age:</form:label>
-				<form:input type="number" path="age" />
-				<form:errors class="text-danger" path="age" />
+				<form:label path="genre">Genre:</form:label>
+				<form:input type="text" path="genre" />
+				<form:errors class="text-danger" path="genre" />
 			</div>
-			<div>
-				<form:select path="team">
-					<c:forEach var="team" items="${teams}">
-						<option value="${team.id}"><c:out value="${team.name}"/></option>
-					</c:forEach>
-				</form:select>
-<%-- 				<form:errors class="text-danger" path="team" /> --%>
-			</div>
-			<input type="submit" value="Submit" />
+			<button>Submit</button>
 		</form:form>
 	</div>
 </body>

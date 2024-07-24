@@ -18,19 +18,19 @@
 		<form:form action="/register/user" method="post"
 			modelAttribute="newUser">
 			<p>
-				<form:label path="firstName">First Name</form:label>
-				<form:errors class="text-danger" path="firstName" />
-				<form:input class="w-100" path="firstName" />
+				<form:label path="username">Userame</form:label>
+				<form:errors class="text-danger" path="username" />
+				<form:input class="w-100" path="username" />
 			</p>
 			<p>
-				<form:label path="lastName">Last Name</form:label>
-				<form:errors class="text-danger" path="lastName" />
-				<form:input class="w-100" path="lastName" />
+				<form:label path="birthday">Birthdate</form:label>
+				<form:errors class="text-danger" path="birthday" />
+				<form:input type="date" class="w-100" path="birthday" />
 			</p>
 			<p>
 				<form:label path="email">Email</form:label>
 				<form:errors class="text-danger" path="email" />
-				<form:input class="w-100" path="email" />
+				<form:input type="email" class="w-100" path="email" />
 			</p>
 			<p>
 				<form:label path="password">Password</form:label>
@@ -42,13 +42,6 @@
 				<form:errors class="text-danger" path="confirm" />
 				<form:input class="w-100" path="confirm" type="password" />
 			</p>
-			<p>
-				<form:label path="favLanguage">Favorite Language</form:label>
-				<form:errors class="text-danger" path="favLanguage" />
-				<form:radiobutton path="favLanguage" value="Python" label="Python"/>
-				<form:radiobutton path="favLanguage" value="Javascript" label="Javascript"/>
-				<form:radiobutton path="favLanguage" value="C#" label="C#"/>
-			</p>
 			<button>Register</button>
 		</form:form>
 		<h2>Login</h2>
@@ -57,7 +50,7 @@
 			<p>
 				<form:label path="email">Email</form:label>
 				<form:errors class="text-danger" path="email" />
-				<form:input class="w-100" path="email" />
+				<form:input type="email" class="w-100" path="email" />
 			</p>
 			<p>
 				<form:label path="password">Password</form:label>
