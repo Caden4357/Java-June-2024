@@ -1,5 +1,7 @@
 package com.codingdojo.exam.services;
 
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.Optional;
 
 import org.mindrot.jbcrypt.BCrypt;
@@ -30,7 +32,20 @@ public class UserService {
     	if(!newUser.getPassword().equals(newUser.getConfirm())) {
     		result.rejectValue("confirm", "Matches", "Passwords dont match"); // add an error to the result obj
     	}
-    	System.out.println("HERE");
+		/*
+		 * public static int calculateAge(LocalDate birthDate, LocalDate currentDate) {
+		 * if ((birthDate != null) && (currentDate != null)) { return
+		 * Period.between(birthDate, currentDate).getYears(); } else { return 0; } }
+		 */
+    	if(newUser.getBirthday() != null) {
+    		LocalDate today = LocalDate.now();
+    		LocalDate birthday = newUser.getBirthday();
+    		int ageOfUser = Period.between(birthday, today).getYears();
+    		System.out.println("AGE OF USER: " + ageOfUser);
+    		if(ageOfUser < 18) {
+    			result.rejectValue("birthday", "Matches", "You must be 18 or older to enter the site");
+    		}
+    	}
     	// check for any additional errors 
     	if(result.hasErrors()) { // checking if any errors got added to the result obj
     		return null;    		

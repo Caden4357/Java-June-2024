@@ -68,9 +68,11 @@ public class User {
 	protected void onUpdate() {
 		this.updatedAt = new Date();
 	}
-    @OneToMany(mappedBy="user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy="user", fetch = FetchType.LAZY)
     private List<Game> games;
     
+    @OneToMany(mappedBy="user", fetch = FetchType.LAZY)
+    private List<Suggestion> suggestions;
     
 	public User() {
 	}
@@ -145,6 +147,14 @@ public class User {
 
 	public void setGames(List<Game> games) {
 		this.games = games;
+	}
+
+	public List<Suggestion> getSuggestions() {
+		return suggestions;
+	}
+
+	public void setSuggestions(List<Suggestion> suggestions) {
+		this.suggestions = suggestions;
 	}
 
 	

@@ -13,18 +13,23 @@
 </head>
 <body>
 	<div class="container text-center">
-		<h1>Hello, <c:out value="${user.username }"/></h1>
+		<h1>
+			Hello,
+			<c:out value="${user.username }" />
+		</h1>
 		<a href="/logout">Logout</a>
 		<h2>Current Games</h2>
 		<h3>Games</h3>
 		<hr>
 		<c:forEach var="game" items="${games}">
-			<a href="#">
-				<c:out value="${game.name}"/>
-			</a>
-			<h4>
-				Genre: <c:out value="${game.genre}"/>
-			</h4>
+			<div class="border border-2 border-primary">
+				<a href="/view/game/${game.id}"> <c:out value="${game.name}" />
+				</a>
+				<h4>
+					Genre:
+					<c:out value="${game.genre}" />
+				</h4>
+			</div>
 		</c:forEach>
 		<a href="/new/game" class="btn btn-primary">Add A Game</a>
 	</div>

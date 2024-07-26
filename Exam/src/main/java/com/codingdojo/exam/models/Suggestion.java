@@ -1,11 +1,9 @@
 package com.codingdojo.exam.models;
 
 import java.util.Date;
-import java.util.List;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -14,27 +12,21 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotEmpty;
 
 @Entity
-@Table(name = "games")
-public class Game {
+@Table(name = "suggestions")
+public class Suggestion {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
+	
 	@NotEmpty(message = "Name is required!")
-	private String name;
-	
-	@NotEmpty(message = "Description is required!")
-	private String description;
-	
-	@NotEmpty(message = "Genre is required!")
-	private String genre;
+	private String post;
 	
 	@Column(updatable = false)
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
@@ -51,15 +43,17 @@ public class Game {
 	protected void onUpdate() {
 		this.updatedAt = new Date();
 	}
-
+	
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="user_id")
     private User user;
-	
-    @OneToMany(mappedBy="game", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<Suggestion> suggestions;
     
-	public Game() {
+    
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="game_id")
+    private Game game;
+
+	public Suggestion() {
 	}
 
 	public Long getId() {
@@ -70,28 +64,12 @@ public class Game {
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
+	public String getPost() {
+		return post;
 	}
 
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
-	public String getGenre() {
-		return genre;
-	}
-
-	public void setGenre(String genre) {
-		this.genre = genre;
+	public void setPost(String post) {
+		this.post = post;
 	}
 
 	public Date getCreatedAt() {
@@ -118,13 +96,14 @@ public class Game {
 		this.user = user;
 	}
 
-	public List<Suggestion> getSuggestions() {
-		return suggestions;
+	public Game getGame() {
+		return game;
 	}
 
-	public void setSuggestions(List<Suggestion> suggestions) {
-		this.suggestions = suggestions;
+	public void setGame(Game game) {
+		this.game = game;
 	}
-
-
+	
+    
+    
 }

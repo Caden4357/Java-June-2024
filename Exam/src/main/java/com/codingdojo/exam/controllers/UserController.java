@@ -33,14 +33,11 @@ public class UserController {
     
     @PostMapping("/register/user")
     public String registerUser(@Valid @ModelAttribute("newUser") User newUser, BindingResult result, HttpSession session, Model model) {
-        // TO-DO Later -- call a register method in the service 
-        // to do some extra validations and create a new user!
     	users.register(newUser, result);
     	if(result.hasErrors()) {
     		model.addAttribute("newLogin", new LoggedInUser());
     		return "index.jsp";
     	}else {
-    		// log the user in i.e store their id in session
     		session.setAttribute("userId", newUser.getId());
     		return "redirect:/homepage";
     	}
@@ -56,6 +53,7 @@ public class UserController {
     		return "index.jsp";
     	}else {
     		session.setAttribute("userId", user.getId());
+    		System.out.println(user.getId());
     		return "redirect:/homepage";
     	}
     }

@@ -13,5 +13,10 @@ public class TestAlgo {
         candles.add(1);
         candles.add(3);
         System.out.println(algoApp.birthdayCakeCandles(candles));
+        int[] scores = {10, 5, 20, 20, 4, 5, 2, 25, 1};
+        int[] result = algoApp.breakingRecords(scores);
+        for (int num : result) {
+            System.out.println(num);
+        }
     }
 }
