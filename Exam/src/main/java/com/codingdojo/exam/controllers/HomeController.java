@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.codingdojo.exam.models.Game;
@@ -42,6 +43,8 @@ public class HomeController {
 			return "homepage.jsp";
 		}
 	}
+	
+	
 
 	@GetMapping("/new/game")
 	public String gameForm(@ModelAttribute("game") Game game, HttpSession session) {
@@ -142,6 +145,12 @@ public class HomeController {
 			suggestions.createSuggestion(suggestion);
 			return "redirect:/homepage";
 		}
+	}
+	
+	@PostMapping("/search/games")
+	public String searchGames(@RequestParam("searchQuery") String searchQuery, RedirectAttributes redirectAttributes) {
+		redirectAttributes.addFlashAttribute("searchedGames", games.searchGames(searchQuery));
+		return "redirect:/homepage";
 	}
 	
 	

@@ -18,10 +18,9 @@
 			<c:forEach var="restaurant" items="${restaurants}">
 				<div class="w-1/4 border border-2 border-success p-2">
 					<h2>
-					<a href="/restaurant/${restaurant.id}">
-						Name:
-						<c:out value="${restaurant.name}" />
-					</a>
+						<a href="/restaurant/${restaurant.id}"> Name: <c:out
+								value="${restaurant.name}" />
+						</a>
 					</h2>
 					<h2>
 						Cuisine:
@@ -40,6 +39,15 @@
 			</c:forEach>
 		</div>
 		<h2>Add Your Favorite Restaurant</h2>
+		<c:if test="${not empty errorMessages}">
+			<div class="error">
+				<ul>
+					<c:forEach var="errorMessage" items="${errorMessages}">
+						<li>${errorMessage}</li>
+					</c:forEach>
+				</ul>
+			</div>
+		</c:if>
 		<form:form action="/create/restaurant" method="post"
 			modelAttribute="rest">
 			<div>
@@ -63,6 +71,8 @@
 				<form:errors class="text-danger" path="isOpen" />
 			</div>
 			<input type="submit" value="Submit" />
+
+
 		</form:form>
 	</div>
 </body>

@@ -12,4 +12,5 @@ import com.codingdojo.exam.models.Game;
 @Repository
 public interface GameRepository extends ListCrudRepository<Game, Long>{
 	List<Game> findAllByOrderByNameAsc();
+	List<Game> findByNameContaining(String name);
 }

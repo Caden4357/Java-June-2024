@@ -21,6 +21,10 @@ public class GameService {
 	public List<Game> getAllByNameAsc() {
 		return gRepo.findAllByOrderByNameAsc();
 	}
+	
+	public List<Game> searchGames(String query){
+		return gRepo.findByNameContaining(query);
+	}
 
 	public void createGame(Game game) {
 		gRepo.save(game);

@@ -10,9 +10,12 @@
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
 <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
+<link rel="stylesheet" href="/css/style.css" />
 </head>
 <body>
-	<div class="container text-center">
+	<!-- 		<img alt="sdg" src="/images/star-wars-meme.jpg"> -->
+	<video src="/images/space.mp4" autoplay muted id="myVideo"></video>
+	<div class="container text-center content">
 		<h1>Authentication</h1>
 		<h2>Register</h2>
 		<form:form action="/register/user" method="post"
