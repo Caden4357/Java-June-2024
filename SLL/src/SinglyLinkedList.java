@@ -19,6 +19,35 @@ public class SinglyLinkedList {
         }
     }
     
+//    add to front 
+    public void addToFront(int value) {
+    	Node newNode = new Node(value);
+        if(head == null) {
+            head = newNode;
+        }else {
+//        	set newNodes next to be the current head
+        	newNode.next = head;
+//        	set the head to be the newNode
+        	head = newNode;
+        }
+    }
+    
+    public void addAtIndex(int index, int value) {
+    	Node newNode = new Node(value);
+        if(head == null) {
+            head = newNode;
+        }else {
+        	Node runner = head;
+        	for(int idx = 0; idx < index - 1; idx++) {
+        		runner = runner.next;
+        		System.out.println("STOPPING ON NODE: " + runner.value);
+        	}
+        	newNode.next = runner.next;
+        	runner.next = newNode;
+        	
+        }
+    }
+    
     public void removeFromEnd() {
     	if(head == null) {
     		System.out.println("The list is empty");
@@ -36,10 +65,27 @@ public class SinglyLinkedList {
     	}
     }
     
-//    Remove from front hint: update the head node 
+    public void removeFromFront() {
+    	if(head == null) {
+    		System.out.println("The list is empty");
+    	}else {
+    		head = head.next;
+    	}
+    }
     
-//    Remove from middle or specific "index"
-    
+//    Remove from a specific "index"
+    public void removeAtIndex(int index) {
+    	if(head == null) {
+    		System.out.println("The list is empty");
+    	}else {
+    		Node runner = head;
+    		for(int idx = 0; idx < index - 1; idx++) {
+    			runner = runner.next;
+    		}
+    		runner.next = runner.next.next;
+    		
+    	}
+    }
     public void printValues() {
     	if(head == null) {
     		System.out.println("The list is empty");

@@ -8,12 +8,16 @@ public class ListTester {
         sll.addToEnd(15);
         sll.addToEnd(2);
         sll.addToEnd(20);
-        sll.removeFromEnd(); 
+        sll.addAtIndex(2, 6);
+//        sll.addToFront(14);
 //        sll.removeFromEnd(); 
+//        sll.removeFromEnd(); 
+//        sll.removeFromFront();
+//        sll.removeAtIndex(2);
         sll.printValues();
-        sll.find(0);
-        sll.find(2);
-        sll.find(20);
-        sll.find(5);
+//        sll.find(0);
+//        sll.find(2);
+//        sll.find(20);
+//        sll.find(5);
     }
 }
